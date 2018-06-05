@@ -47,3 +47,7 @@ leSpoileo(Emisor,Receptor,Serie) :-
         leInteresa(Receptor,Serie) ,
         leDijo(Emisor,Receptor,Serie,Spoiler),
         esSpoiler(Serie,Spoiler).
+
+
+
+televidenteResponsable(Persona) :- not(leSpoileo(Persona,_,_)).
