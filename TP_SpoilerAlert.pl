@@ -21,9 +21,13 @@ episodiosPorTemporada(got, 2, 10).
 episodiosPorTemporada(himym, 1, 23).
 episodiosPorTemporada(drHouse, 8, 16).
 
-/* Por principio de universo cerrado se considera que todo lo negado o desconocido
-no se incluye por ejemplo : Nadie mira "Mad men" , Alf no ve ninguna serie porque el doctorado le consume toda la vida
-, No recordamos cuántos episodios tiene la segunda temporada de “Mad men”.*/
+/*
+Por principio de Universo Cerrado se considera que todo lo negado o desconocido no se incluye en este caso:
+  _Nadie mira "Mad men".
+  _Alf no ve ninguna serie porque el doctorado le consume toda la vida.
+  _No recordamos cuántos episodios tiene la segunda temporada de “Mad men”.
+No se modela. 
+*/
 
 /*paso(Serie, Temporada, Episodio, Lo que paso)*/
 paso(futurama, 2, 3, muerte(seymourDiera)).
