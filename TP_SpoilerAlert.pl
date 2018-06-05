@@ -40,3 +40,10 @@ leDijo(aye, gaston, got, relacion(amistad, tyrion, dragon)).
 
 /*esSpoiler(Serie,Spoiler).*/
 esSpoiler(Serie,SiPaso) :- paso(Serie,_,_,SiPaso).
+/* leSpoileo(Emisor,Receptor,Serie)*/
+leInteresa(Persona,Serie) :-mira(Persona,Serie).
+leInteresa(Persona,Serie) :-quiereVer(Persona,Serie).
+leSpoileo(Emisor,Receptor,Serie) :-
+        leInteresa(Receptor,Serie) ,
+        leDijo(Emisor,Receptor,Serie,Spoiler),
+        esSpoiler(Serie,Spoiler).
