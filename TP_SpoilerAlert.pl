@@ -1,21 +1,25 @@
-mira(juan,himym).
-mira(juan,futurama).
-mira(juan,got).
-mira(nico,starWars).
-mira(maiu,starWars).
-mira(nico,got).
-mira(gaston,hoc).
+mira(juan, himym).
+mira(juan, futurama).
+mira(juan, got).
+mira(nico, starWars).
+mira(nico, got).
+mira(maiu, starWars).
+mira(maiu, onePiece).
+mira(maiu, got).
+mira(gaston, hoc).
+
 esPopular(got).
 esPopular(hoc).
 esPopular(starWars).
-quiereVer(juan,hoc).
-quiereVer(aye,got).
-quiereVer(gaston,himym).
 
-episodiosPorTemporada(got,3,12).
-episodiosPorTemporada(got,2,10).
-episodiosPorTemporada(himym,1,23).
-episodiosPorTemporada(drHouse,8,16).
+quiereVer(juan, hoc).
+quiereVer(aye, got).
+quiereVer(gaston, himym).
+
+episodiosPorTemporada(got, 3, 12).
+episodiosPorTemporada(got, 2, 10).
+episodiosPorTemporada(himym, 1, 23).
+episodiosPorTemporada(drHouse, 8, 16).
 
 /* Por principio de universo cerrado se considera que todo lo negado o desconocido
 no se incluye por ejemplo : Nadie mira "Mad men" , Alf no ve ninguna serie porque el doctorado le consume toda la vida
