@@ -1,0 +1,12 @@
+mira(juan,himym).
+mira(juan,futurama).
+mira(nico,starWars).
+mira(maiu,starWars).
+mira(nico,got).
+mira(gaston,hoc).
+esPopular(got).
+esPopular(hoc).
+esPopular(starWars).
+quiereVer(juan,hoc).
+quiereVer(aye,got).
+quiereVer(gaston,himym).
