@@ -38,4 +38,5 @@ leDijo(aye, juan, got, relacion(amistad, tyrion, john)).
 leDijo(aye, maiu, got, relacion(amistad, tyrion, john)).
 leDijo(aye, gaston, got, relacion(amistad, tyrion, dragon)).
 
-esSpoiler(Serie,Spoiler).
+/*esSpoiler(Serie,Spoiler).*/
+esSpoiler(Serie,SiPaso) :- paso(Serie,_,_,SiPaso).
