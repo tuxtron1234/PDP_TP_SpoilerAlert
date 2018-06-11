@@ -72,3 +72,11 @@ televidenteResponsable(Persona):-
 sucesoFuerte(Serie):- paso(Serie, _, _, muerte(_)).
 sucesoFuerte(Serie):- paso(Serie, _, _, relacion(amorosa, _, _)).
 sucesoFuerte(Serie):- paso(Serie, _, _, relacion(parentesco, _, _)).
+
+/* vieneZafando/2 */
+vieneZafando(Persona, Serie):-
+  persona(Persona),
+  leInteresa(Persona, Serie),
+  not(leSpoileo(_, Persona, Serie)),
+  esPopular(Serie),
+  sucesoFuerte(Serie).
