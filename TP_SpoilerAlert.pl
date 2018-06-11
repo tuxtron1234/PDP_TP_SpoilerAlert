@@ -21,15 +21,21 @@ episodiosPorTemporada(got, 2, 10).
 episodiosPorTemporada(himym, 1, 23).
 episodiosPorTemporada(drHouse, 8, 16).
 
+persona(juan).
+persona(nico).
+persona(maiu).
+persona(gaston).
+persona(aye).
+
 /*
 Por principio de Universo Cerrado se considera que todo lo negado o desconocido no se incluye en este caso:
   _Nadie mira "Mad men".
   _Alf no ve ninguna serie porque el doctorado le consume toda la vida.
   _No recordamos cuántos episodios tiene la segunda temporada de “Mad men”.
-No se modela. 
+No se modela.
 */
 
-/*paso(Serie, Temporada, Episodio, Lo que paso)*/
+/* paso(Serie, Temporada, Episodio, Lo que paso) */
 paso(futurama, 2, 3, muerte(seymourDiera)).
 paso(starWars, 10, 9, muerte(emperor)).
 paso(starWars, 1, 2, relacion(parentesco, anakin, rey)).
@@ -46,16 +52,18 @@ leDijo(aye, juan, got, relacion(amistad, tyrion, john)).
 leDijo(aye, maiu, got, relacion(amistad, tyrion, john)).
 leDijo(aye, gaston, got, relacion(amistad, tyrion, dragon)).
 
-/*esSpoiler(Serie,Spoiler).*/
-esSpoiler(Serie,SiPaso) :- paso(Serie,_,_,SiPaso).
-/* leSpoileo(Emisor,Receptor,Serie)*/
-leInteresa(Persona,Serie) :-mira(Persona,Serie).
-leInteresa(Persona,Serie) :-quiereVer(Persona,Serie).
-leSpoileo(Emisor,Receptor,Serie) :-
-        leInteresa(Receptor,Serie) ,
-        leDijo(Emisor,Receptor,Serie,Spoiler),
-        esSpoiler(Serie,Spoiler).
+/*esSpoiler(Serie,Spoiler). */
+esSpoiler(Serie, Spoiler):- paso(Serie, _, _, Spoiler).
 
+leInteresa(Persona, Serie):- mira(Persona, Serie).
+leInteresa(Persona, Serie):- quiereVer(Persona, Serie).
 
+/* leSpoileo(Emisor,Receptor,Serie) */
+leSpoileo(Emisor, Receptor, Serie):-
+  leInteresa(Receptor, Serie),
+  leDijo(Emisor, Receptor, Serie, Spoiler),
+  esSpoiler(Serie, Spoiler).
 
-televidenteResponsable(Persona) :- not(leSpoileo(Persona,_,_)).
+televidenteResponsable(Persona):-
+  persona(Persona),
+  not(leSpoileo(Persona, _, Serie)).
