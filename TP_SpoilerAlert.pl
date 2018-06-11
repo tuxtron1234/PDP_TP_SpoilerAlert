@@ -68,3 +68,7 @@ leSpoileo(Emisor, Receptor, Serie):-
 televidenteResponsable(Persona):-
   persona(Persona),
   not(leSpoileo(Persona, _, _)).
+
+sucesoFuerte(Serie):- paso(Serie, _, _, muerte(_)).
+sucesoFuerte(Serie):- paso(Serie, _, _, relacion(amorosa, _, _)).
+sucesoFuerte(Serie):- paso(Serie, _, _, relacion(parentesco, _, _)).
