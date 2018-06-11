@@ -52,18 +52,19 @@ leDijo(aye, juan, got, relacion(amistad, tyrion, john)).
 leDijo(aye, maiu, got, relacion(amistad, tyrion, john)).
 leDijo(aye, gaston, got, relacion(amistad, tyrion, dragon)).
 
-/*esSpoiler(Serie,Spoiler). */
+/*esSpoiler/2 */
 esSpoiler(Serie, Spoiler):- paso(Serie, _, _, Spoiler).
 
 leInteresa(Persona, Serie):- mira(Persona, Serie).
 leInteresa(Persona, Serie):- quiereVer(Persona, Serie).
 
-/* leSpoileo(Emisor,Receptor,Serie) */
+/* leSpoileo/3 */
 leSpoileo(Emisor, Receptor, Serie):-
   leInteresa(Receptor, Serie),
   leDijo(Emisor, Receptor, Serie, Spoiler),
   esSpoiler(Serie, Spoiler).
 
+/* televidenteResponsable/1 */
 televidenteResponsable(Persona):-
   persona(Persona),
-  not(leSpoileo(Persona, _, Serie)).
+  not(leSpoileo(Persona, _, _)).
