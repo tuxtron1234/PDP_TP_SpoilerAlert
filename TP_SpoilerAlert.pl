@@ -78,5 +78,4 @@ vieneZafando(Persona, Serie):-
   persona(Persona),
   leInteresa(Persona, Serie),
   not(leSpoileo(_, Persona, Serie)),
-  esPopular(Serie),
   sucesoFuerte(Serie).
