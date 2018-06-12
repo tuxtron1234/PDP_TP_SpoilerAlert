@@ -1,3 +1,5 @@
+
+
 mira(juan, himym).
 mira(juan, futurama).
 mira(juan, got).
@@ -26,6 +28,7 @@ persona(nico).
 persona(maiu).
 persona(gaston).
 persona(aye).
+
 
 /*
 Por principio de Universo Cerrado se considera que todo lo negado o desconocido no se incluye en este caso:
@@ -58,6 +61,16 @@ esSpoiler(Serie, Spoiler):- paso(Serie, _, _, Spoiler).
 leInteresa(Persona, Serie):- mira(Persona, Serie).
 leInteresa(Persona, Serie):- quiereVer(Persona, Serie).
 
+/*
+:- begin_tests(puntoB).
+
+test(hechosVerdaderos,set(Hechos == [muerte(emperor),relacion(parentesco,anakin,rey)])) :-
+esSpoiler(_,Hechos).
+% test(hechosFalsos,fail,anondet) :-
+% esSpoiler(starWars,muerte(emperor)).
+:- end_tests(puntoB).
+*/
+
 /* leSpoileo/3 */
 leSpoileo(Emisor, Receptor, Serie):-
   leInteresa(Receptor, Serie),
@@ -73,9 +86,13 @@ sucesoFuerte(Serie):- paso(Serie, _, _, muerte(_)).
 sucesoFuerte(Serie):- paso(Serie, _, _, relacion(amorosa, _, _)).
 sucesoFuerte(Serie):- paso(Serie, _, _, relacion(parentesco, _, _)).
 
+
+sucesoFuerteOPopular(Serie):- sucesoFuerte(Serie).
+sucesoFuerteOPopular(Serie):- esPopular(Serie).
+
 /* vieneZafando/2 */
 vieneZafando(Persona, Serie):-
   persona(Persona),
   leInteresa(Persona, Serie),
   not(leSpoileo(_, Persona, Serie)),
-  sucesoFuerte(Serie).
+  sucesoFuerteOPopular(Serie).
