@@ -1,5 +1,4 @@
-
-
+% Punto 1
 mira(juan, himym).
 mira(juan, futurama).
 mira(juan, got).
@@ -23,13 +22,6 @@ episodiosPorTemporada(got, 2, 10).
 episodiosPorTemporada(himym, 1, 23).
 episodiosPorTemporada(drHouse, 8, 16).
 
-persona(juan).
-persona(nico).
-persona(maiu).
-persona(gaston).
-persona(aye).
-
-
 /*
 Por principio de Universo Cerrado se considera que todo lo negado o desconocido no se incluye en este caso:
   _Nadie mira "Mad men".
@@ -38,7 +30,7 @@ Por principio de Universo Cerrado se considera que todo lo negado o desconocido 
 No se modela.
 */
 
-/* paso(Serie, Temporada, Episodio, Lo que paso) */
+% Punto 2
 paso(futurama, 2, 3, muerte(seymourDiera)).
 paso(starWars, 10, 9, muerte(emperor)).
 paso(starWars, 1, 2, relacion(parentesco, anakin, rey)).
@@ -47,7 +39,6 @@ paso(himym, 1, 1, relacion(amorosa, ted, robin)).
 paso(himym, 4, 3, relacion(amorosa, swarley, robin)).
 paso(got, 4, 5, relacion(amistad, tyrion, dragon)).
 
-/*leDijo/4*/
 leDijo(gaston, maiu, got, relacion(amistad, tyrion, dragon)).
 leDijo(nico, maiu, starWars, relacion(parentesco, vader, luke)).
 leDijo(nico, juan, got, muerte(tyrion)).
@@ -55,11 +46,8 @@ leDijo(aye, juan, got, relacion(amistad, tyrion, john)).
 leDijo(aye, maiu, got, relacion(amistad, tyrion, john)).
 leDijo(aye, gaston, got, relacion(amistad, tyrion, dragon)).
 
-/*esSpoiler/2 */
+% Punto 3
 esSpoiler(Serie, Spoiler):- paso(Serie, _, _, Spoiler).
-
-leInteresa(Persona, Serie):- mira(Persona, Serie).
-leInteresa(Persona, Serie):- quiereVer(Persona, Serie).
 
 /*
 :- begin_tests(puntoB).
@@ -71,21 +59,30 @@ esSpoiler(_,Hechos).
 :- end_tests(puntoB).
 */
 
-/* leSpoileo/3 */
-leSpoileo(Emisor, Receptor, Serie):-
-  leInteresa(Receptor, Serie),
-  leDijo(Emisor, Receptor, Serie, Spoiler),
+% Punto 4
+leInteresa(Espectador, Serie):- mira(Espectador, Serie).
+leInteresa(Espectador, Serie):- quiereVer(Espectador, Serie).
+
+leSpoileo(PersonaMala, Victima, Serie):-
+  leInteresa(Victima, Serie),
+  leDijo(PersonaMala, Victima, Serie, Spoiler),
   esSpoiler(Serie, Spoiler).
 
-/* televidenteResponsable/1 */
+% Punto 5
+persona(juan).
+persona(nico).
+persona(maiu).
+persona(gaston).
+persona(aye).
+
 televidenteResponsable(Persona):-
   persona(Persona),
   not(leSpoileo(Persona, _, _)).
 
+% Punto 6
 sucesoFuerte(Serie):- paso(Serie, _, _, muerte(_)).
 sucesoFuerte(Serie):- paso(Serie, _, _, relacion(amorosa, _, _)).
 sucesoFuerte(Serie):- paso(Serie, _, _, relacion(parentesco, _, _)).
-
 
 sucesoFuerteOPopular(Serie):- sucesoFuerte(Serie).
 sucesoFuerteOPopular(Serie):- esPopular(Serie).
