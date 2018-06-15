@@ -70,6 +70,15 @@ leSpoileo(PersonaMala, Victima, Serie):-
   leDijo(PersonaMala, Victima, Serie, Spoiler),
   esSpoiler(Serie, Spoiler).
 
+:- begin_tests(punto4LeSpoileo).
+
+test(gastónLeDijoAMaiuUnSpoilerDeGOT, nondet):-
+  leSpoileo(PersonaMala, Victima, Serie), PersonaMala == gastón, Victima == maiu, Serie == got.
+
+test(nicoLeDijoAMaiuUnSpoilerDeStarWars, nondet):-
+  leSpoileo(PersonaMala, Victima, Serie), PersonaMala == nico, Victima == maiu, Serie == starWars.
+
+:- end_tests(punto4LeSpoileo).
 
 % Punto 5
 persona(Persona):- leInteresa(Persona, _).
