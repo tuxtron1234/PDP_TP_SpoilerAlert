@@ -1,3 +1,5 @@
+:- encoding(utf8).
+
 % Punto 1
 mira(juan, himym).
 mira(juan, futurama).
@@ -7,7 +9,7 @@ mira(nico, got).
 mira(maiu, starWars).
 mira(maiu, onePiece).
 mira(maiu, got).
-mira(gaston, hoc).
+mira(gastón, hoc).
 
 esPopular(got).
 esPopular(hoc).
@@ -15,7 +17,7 @@ esPopular(starWars).
 
 quiereVer(juan, hoc).
 quiereVer(aye, got).
-quiereVer(gaston, himym).
+quiereVer(gastón, himym).
 
 episodiosPorTemporada(got, 3, 12).
 episodiosPorTemporada(got, 2, 10).
@@ -31,23 +33,23 @@ No se modela.
 */
 
 % Punto 2
-paso(futurama, 2, 3, muerte(seymourDiera)).
-paso(starWars, 10, 9, muerte(emperor)).
-paso(starWars, 1, 2, relacion(parentesco, anakin, rey)).
-paso(starWars, 3, 2, relacion(parentesco, vader, luke)).
-paso(himym, 1, 1, relacion(amorosa, ted, robin)).
-paso(himym, 4, 3, relacion(amorosa, swarley, robin)).
-paso(got, 4, 5, relacion(amistad, tyrion, dragon)).
+pasó(futurama, 2, 3, muerte(seymourDiera)).
+pasó(starWars, 10, 9, muerte(emperor)).
+pasó(starWars, 1, 2, relación(parentesco, anakin, rey)).
+pasó(starWars, 3, 2, relación(parentesco, vader, luke)).
+pasó(himym, 1, 1, relación(amorosa, ted, robin)).
+pasó(himym, 4, 3, relación(amorosa, swarley, robin)).
+pasó(got, 4, 5, relación(amistad, tyrion, dragon)).
 
-leDijo(gaston, maiu, got, relacion(amistad, tyrion, dragon)).
-leDijo(nico, maiu, starWars, relacion(parentesco, vader, luke)).
+leDijo(gaston, maiu, got, relación(amistad, tyrion, dragon)).
+leDijo(nico, maiu, starWars, relación(parentesco, vader, luke)).
 leDijo(nico, juan, got, muerte(tyrion)).
-leDijo(aye, juan, got, relacion(amistad, tyrion, john)).
-leDijo(aye, maiu, got, relacion(amistad, tyrion, john)).
-leDijo(aye, gaston, got, relacion(amistad, tyrion, dragon)).
+leDijo(aye, juan, got, relación(amistad, tyrion, john)).
+leDijo(aye, maiu, got, relación(amistad, tyrion, john)).
+leDijo(aye, gaston, got, relación(amistad, tyrion, dragon)).
 
 % Punto 3
-esSpoiler(Serie, Spoiler):- paso(Serie, _, _, Spoiler).
+esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 
 /*
 :- begin_tests(puntoB).
@@ -72,7 +74,7 @@ leSpoileo(PersonaMala, Victima, Serie):-
 persona(juan).
 persona(nico).
 persona(maiu).
-persona(gaston).
+persona(gastón).
 persona(aye).
 
 televidenteResponsable(Persona):-
@@ -80,9 +82,9 @@ televidenteResponsable(Persona):-
   not(leSpoileo(Persona, _, _)).
 
 % Punto 6
-sucesoFuerte(Serie):- paso(Serie, _, _, muerte(_)).
-sucesoFuerte(Serie):- paso(Serie, _, _, relacion(amorosa, _, _)).
-sucesoFuerte(Serie):- paso(Serie, _, _, relacion(parentesco, _, _)).
+sucesoFuerte(Serie):- pasó(Serie, _, _, muerte(_)).
+sucesoFuerte(Serie):- pasó(Serie, _, _, relacion(amorosa, _, _)).
+sucesoFuerte(Serie):- pasó(Serie, _, _, relacion(parentesco, _, _)).
 
 sucesoFuerteOPopular(Serie):- sucesoFuerte(Serie).
 sucesoFuerteOPopular(Serie):- esPopular(Serie).
