@@ -51,7 +51,7 @@ leDijo(aye, gaston, got, relación(amistad, tyrion, dragon)).
 % Punto 3
 esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 
-:- begin_tests(puntoBEsSpoiler).
+:- begin_tests(punto3_EsSpoiler).
 
 test(la_muerte_del_emperor_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == muerte(emperor).
@@ -59,7 +59,7 @@ test(la_muerte_del_emperor_es_spoiler_para_StarWars, nondet):-
 tests(la_relación_de_parentesco_entre_anakin_y_el_rey_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == relación(parentesco, anakin, rey).
 
-:- end_tests(puntoBEsSpoiler).
+:- end_tests(punto3_EsSpoiler).
 
 % Punto 4
 leInteresa(Espectador, Serie):- mira(Espectador, Serie).
@@ -70,7 +70,7 @@ leSpoileo(PersonaMala, Victima, Serie):-
   leDijo(PersonaMala, Victima, Serie, Spoiler),
   esSpoiler(Serie, Spoiler).
 
-:- begin_tests(punto4LeSpoileo).
+:- begin_tests(punto4_LeSpoileo).
 
 test(gastón_le_dijo_a_maiu_un_spoiler_de_GOT, nondet):-
   leSpoileo(PersonaMala, Victima, Serie), PersonaMala == gastón, Victima == maiu, Serie == got.
@@ -78,7 +78,7 @@ test(gastón_le_dijo_a_maiu_un_spoiler_de_GOT, nondet):-
 test(nico_le_dijo_a_maiu_un_spoiler_de_StarWars, nondet):-
   leSpoileo(PersonaMala, Victima, Serie), PersonaMala == nico, Victima == maiu, Serie == starWars.
 
-:- end_tests(punto4LeSpoileo).
+:- end_tests(punto4_LeSpoileo).
 
 % Punto 5
 persona(Persona):- leInteresa(Persona, _).
@@ -87,17 +87,17 @@ televidenteResponsable(Persona):-
   persona(Persona),
   not(leSpoileo(Persona, _, _)).
 
-:- begin_tests(punto5televidenteResponsable).
+:- begin_tests(punto5_televidenteResponsable).
 
 test(juan_aye_y_maiu_son_televidentes_responsables, set(Personas == [juan, aye, maiu])):-
   televidenteResponsable(Personas).
 
-:- end_tests(punto5televidenteResponsable).
+:- end_tests(punto5_televidenteResponsable).
 
 % Punto 6
 sucesoFuerte(Serie):- pasó(Serie, _, _, muerte(_)).
-sucesoFuerte(Serie):- pasó(Serie, _, _, relacion(amorosa, _, _)).
-sucesoFuerte(Serie):- pasó(Serie, _, _, relacion(parentesco, _, _)).
+sucesoFuerte(Serie):- pasó(Serie, _, _, relación(amorosa, _, _)).
+sucesoFuerte(Serie):- pasó(Serie, _, _, relación(parentesco, _, _)).
 
 sucesoFuerteOPopular(Serie):- sucesoFuerte(Serie).
 sucesoFuerteOPopular(Serie):- esPopular(Serie).
