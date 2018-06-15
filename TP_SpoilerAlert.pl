@@ -41,7 +41,7 @@ pasó(himym, 1, 1, relación(amorosa, ted, robin)).
 pasó(himym, 4, 3, relación(amorosa, swarley, robin)).
 pasó(got, 4, 5, relación(amistad, tyrion, dragon)).
 
-leDijo(gaston, maiu, got, relación(amistad, tyrion, dragon)).
+leDijo(gastón, maiu, got, relación(amistad, tyrion, dragon)).
 leDijo(nico, maiu, starWars, relación(parentesco, vader, luke)).
 leDijo(nico, juan, got, muerte(tyrion)).
 leDijo(aye, juan, got, relación(amistad, tyrion, john)).
@@ -71,8 +71,7 @@ leSpoileo(PersonaMala, Victima, Serie):-
   esSpoiler(Serie, Spoiler).
 
 % Punto 5
-persona(Persona):- mira(Persona, _).
-persona(Persona):- quiereVer(Persona, _).
+persona(Persona):- leInteresa(Persona, _).
 
 televidenteResponsable(Persona):-
   persona(Persona),
