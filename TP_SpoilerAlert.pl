@@ -108,3 +108,15 @@ vieneZafando(Persona, Serie):-
   leInteresa(Persona, Serie),
   not(leSpoileo(_, Persona, Serie)),
   sucesoFuerteOPopular(Serie).
+
+/*
+:- begin_tests(punto6_vieneZafando).
+
+test(juan_viene_zafando_con_himym_got_y_hoc, set(Series = [himym, got, hoc])):-
+	vieneZafando(juan, Series).
+
+test(nico_viene_zafando_con_StarWars, nondet):-
+	vieneZafando(Persona, Serie), Persona == nico, Serie == starWars.
+
+:- end_tests(punto6_vieneZafando).
+*/
