@@ -56,7 +56,7 @@ esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 test(la_muerte_del_emperor_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == muerte(emperor).
 
-tests(la_relación_de_parentesco_entre_anakin_y_el_rey_es_spoiler_para_StarWars, nondet):-
+test(la_relación_de_parentesco_entre_anakin_y_el_rey_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == relación(parentesco, anakin, rey).
 
 :- end_tests(punto3_EsSpoiler).
