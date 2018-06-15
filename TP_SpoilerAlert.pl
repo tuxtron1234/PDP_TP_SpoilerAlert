@@ -71,11 +71,8 @@ leSpoileo(PersonaMala, Victima, Serie):-
   esSpoiler(Serie, Spoiler).
 
 % Punto 5
-persona(juan).
-persona(nico).
-persona(maiu).
-persona(gastón).
-persona(aye).
+persona(Persona):- mira(Persona, _).
+persona(Persona):- quiereVer(Persona, _).
 
 televidenteResponsable(Persona):-
   persona(Persona),
