@@ -53,10 +53,10 @@ esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 
 :- begin_tests(puntoBEsSpoiler).
 
-test(laMuerteDelEmperorEsSpoilerParaStarWars, nondet):-
+test(la_muerte_del_emperor_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == muerte(emperor).
 
-tests(laRelaciónDeParentescoEntreAnakinYElReyEsSpoilerParaStarWars, nondet):-
+tests(la_relación_de_parentesco_entre_anakin_y_el_rey_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == relación(parentesco, anakin, rey).
 
 :- end_tests(puntoBEsSpoiler).
@@ -72,10 +72,10 @@ leSpoileo(PersonaMala, Victima, Serie):-
 
 :- begin_tests(punto4LeSpoileo).
 
-test(gastónLeDijoAMaiuUnSpoilerDeGOT, nondet):-
+test(gastón_le_dijo_a_maiu_un_spoiler_de_GOT, nondet):-
   leSpoileo(PersonaMala, Victima, Serie), PersonaMala == gastón, Victima == maiu, Serie == got.
 
-test(nicoLeDijoAMaiuUnSpoilerDeStarWars, nondet):-
+test(nico_le_dijo_a_maiu_un_spoiler_de_StarWars, nondet):-
   leSpoileo(PersonaMala, Victima, Serie), PersonaMala == nico, Victima == maiu, Serie == starWars.
 
 :- end_tests(punto4LeSpoileo).
@@ -86,6 +86,13 @@ persona(Persona):- leInteresa(Persona, _).
 televidenteResponsable(Persona):-
   persona(Persona),
   not(leSpoileo(Persona, _, _)).
+
+:- begin_tests(punto5televidenteResponsable).
+
+test(juan_aye_y_maiu_son_televidentes_responsables, set(Personas == [juan, aye, maiu])):-
+  televidenteResponsable(Personas).
+
+:- end_tests(punto5televidenteResponsable).
 
 % Punto 6
 sucesoFuerte(Serie):- pasó(Serie, _, _, muerte(_)).
