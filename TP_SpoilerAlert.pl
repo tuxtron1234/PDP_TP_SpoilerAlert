@@ -19,10 +19,10 @@ quiereVer(juan, hoc).
 quiereVer(aye, got).
 quiereVer(gastón, himym).
 
-episodiosPorTemporada(got, 3, 12).
-episodiosPorTemporada(got, 2, 10).
-episodiosPorTemporada(himym, 1, 23).
-episodiosPorTemporada(drHouse, 8, 16).
+episodiosPorTemporada(got, 12, 3).
+episodiosPorTemporada(got, 10, 2).
+episodiosPorTemporada(himym, 23, 1).
+episodiosPorTemporada(drHouse, 16, 8).
 
 /*
 Por principio de Universo Cerrado se considera que todo lo negado o desconocido no se incluye en este caso:
