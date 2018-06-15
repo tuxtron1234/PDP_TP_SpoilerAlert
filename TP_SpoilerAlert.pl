@@ -51,15 +51,15 @@ leDijo(aye, gaston, got, relación(amistad, tyrion, dragon)).
 % Punto 3
 esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 
-/*
-:- begin_tests(puntoB).
+:- begin_tests(puntoBEsSpoiler).
 
-test(hechosVerdaderos,set(Hechos == [muerte(emperor),relacion(parentesco,anakin,rey)])) :-
-esSpoiler(_,Hechos).
-% test(hechosFalsos,fail,anondet) :-
-% esSpoiler(starWars,muerte(emperor)).
-:- end_tests(puntoB).
-*/
+test(laMuerteDelEmperorEsSpoilerParaStarWars, nondet):-
+  esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == muerte(emperor).
+
+tests(laRelaciónDeParentescoEntreAnakinYElReyEsSpoilerParaStarWars, nondet):-
+  esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == relación(parentesco, anakin, rey).
+
+:- end_tests(puntoBEsSpoiler).
 
 % Punto 4
 leInteresa(Espectador, Serie):- mira(Espectador, Serie).
@@ -69,6 +69,7 @@ leSpoileo(PersonaMala, Victima, Serie):-
   leInteresa(Victima, Serie),
   leDijo(PersonaMala, Victima, Serie, Spoiler),
   esSpoiler(Serie, Spoiler).
+
 
 % Punto 5
 persona(Persona):- leInteresa(Persona, _).
