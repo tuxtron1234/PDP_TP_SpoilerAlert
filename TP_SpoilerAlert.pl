@@ -98,19 +98,21 @@ test(juan_aye_y_maiu_son_televidentes_responsables, set(Personas == [juan, aye, 
 temporadas(Serie, Temporada):- episodiosPorTemporada(Serie, _, Temporada).
 temporadas(Serie, Temporada):- pasó(Serie, Temporada, _, _).
 
-sucesoFuerte(Serie):- pasó(Serie, _, _, muerte(_)).
-sucesoFuerte(Serie):- pasó(Serie, _, _, relación(amorosa, _, _)).
-sucesoFuerte(Serie):- pasó(Serie, _, _, relación(parentesco, _, _)).
+esFuerte(Temporada):- pasó(_, Temporada, _, muerte(_)).
+esFuerte(Temporada):- pasó(_, Temporada, _, relación(parentesco, _, _)).
+esFuerte(Temporada):- pasó(_, Temporada, _, relación(amorosa, _, _)).
 
+/*
 sucesoFuerteOPopular(Serie):- sucesoFuerte(Serie).
 sucesoFuerteOPopular(Serie):- esPopular(Serie).
+*/
 
 /* vieneZafando/2 */
 vieneZafando(Persona, Serie):-
   persona(Persona),
   leInteresa(Persona, Serie),
   not(leSpoileo(_, Persona, Serie)),
-  sucesoFuerteOPopular(Serie).
+% sucesoFuerteOPopular(Serie).
 
 /*
 :- begin_tests(punto6_vieneZafando).
