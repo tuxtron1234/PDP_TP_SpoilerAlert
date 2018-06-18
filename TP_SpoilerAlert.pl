@@ -95,6 +95,8 @@ test(juan_aye_y_maiu_son_televidentes_responsables, set(Personas == [juan, aye, 
 :- end_tests(punto5_televidenteResponsable).
 
 % Punto 6
+serie(Serie):- leInteresa(_, Serie).
+
 temporadas(Serie, Temporada):- episodiosPorTemporada(Serie, _, Temporada).
 temporadas(Serie, Temporada):- pasó(Serie, Temporada, _, _).
 
@@ -102,19 +104,16 @@ esFuerte(Temporada):- pasó(_, Temporada, _, muerte(_)).
 esFuerte(Temporada):- pasó(_, Temporada, _, relación(parentesco, _, _)).
 esFuerte(Temporada):- pasó(_, Temporada, _, relación(amorosa, _, _)).
 
-/*
-sucesoFuerteOPopular(Serie):- sucesoFuerte(Serie).
-sucesoFuerteOPopular(Serie):- esPopular(Serie).
-*/
-
-/* vieneZafando/2 */
 vieneZafando(Persona, Serie):-
-  persona(Persona),
-  leInteresa(Persona, Serie),
-  not(leSpoileo(_, Persona, Serie)),
-% sucesoFuerteOPopular(Serie).
+	leInteresa(Persona, Serie),
+	not(leSpoileo(_, Persona, Serie)),
+	forall(temporadas(Serie, Temporada), esFuerte(Temporada)).
 
-/*
+vieneZafando(Persona, Serie):-
+	leInteresa(Persona, Serie),
+	not(leSpoileo(_, Persona, Serie)),
+	forall(serie(Serie), esPopular(Serie)).
+
 :- begin_tests(punto6_vieneZafando).
 
 test(juan_viene_zafando_con_himym_got_y_hoc, set(Series = [himym, got, hoc])):-
@@ -124,4 +123,3 @@ test(nico_viene_zafando_con_StarWars, nondet):-
 	vieneZafando(Persona, Serie), Persona == nico, Serie == starWars.
 
 :- end_tests(punto6_vieneZafando).
-*/
