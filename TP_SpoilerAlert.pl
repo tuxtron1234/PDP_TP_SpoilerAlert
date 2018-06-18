@@ -95,6 +95,9 @@ test(juan_aye_y_maiu_son_televidentes_responsables, set(Personas == [juan, aye, 
 :- end_tests(punto5_televidenteResponsable).
 
 % Punto 6
+temporadas(Serie, Temporada):- episodiosPorTemporada(Serie, _, Temporada).
+temporadas(Serie, Temporada):- pasó(Serie, Temporada, _, _).
+
 sucesoFuerte(Serie):- pasó(Serie, _, _, muerte(_)).
 sucesoFuerte(Serie):- pasó(Serie, _, _, relación(amorosa, _, _)).
 sucesoFuerte(Serie):- pasó(Serie, _, _, relación(parentesco, _, _)).
