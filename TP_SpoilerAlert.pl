@@ -111,7 +111,7 @@ vieneZafando(Persona, Serie):-
 vieneZafando(Persona, Serie):-
 	leInteresa(Persona, Serie),
 	not(leSpoileo(_, Persona, Serie)),
-	forall(serie(Serie), esPopular(Serie)).
+	esPopular(Serie).
 
 :- begin_tests(punto6_vieneZafando).
 
