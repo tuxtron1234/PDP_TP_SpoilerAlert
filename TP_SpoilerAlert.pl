@@ -11,6 +11,8 @@ mira(maiu, onePiece).
 mira(maiu, got).
 mira(gastón, hoc).
 
+mira(pedro,got).
+
 esPopular(got).
 esPopular(hoc).
 esPopular(starWars).
@@ -44,6 +46,12 @@ pasó(himym, 1, 1, relación(amorosa, ted, robin)).
 pasó(himym, 4, 3, relación(amorosa, swarley, robin)).
 pasó(got, 4, 5, relación(amistad, tyrion, dragon)).
 
+pasó(got,3,2,plotTwist(sueño,sinPiernas)).
+pasó(got,3,12,plotTwist(fuego,boda)).
+pasó(superCampeones,9,9,plotTwist(sueño,coma,sinPiernas)).
+pasó(drHouse,8,7,plotTwist(coma,pastillas)).
+
+
 leDijo(gastón, maiu, got, relación(amistad, tyrion, dragon)).
 leDijo(nico, maiu, starWars, relación(parentesco, vader, luke)).
 leDijo(nico, juan, got, muerte(tyrion)).
@@ -51,6 +59,9 @@ leDijo(aye, juan, got, relación(amistad, tyrion, john)).
 leDijo(aye, maiu, got, relación(amistad, tyrion, john)).
 leDijo(aye, gaston, got, relación(amistad, tyrion, dragon)).
 
+leDijo(nico,juan,futurama,muerte(seymourDiera)).
+leDijo(pedro,aye,got,relación(amistad,tyrion,dragon)).
+leDijo(pedro,nico,got,relación(parentesco,tyrion,dragon)).
 % Punto 3
 esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 
@@ -107,7 +118,7 @@ test(nico_y_gaston_no_son_televidentes_responsables, set(Personas == [nico,gasto
 % Punto 6
 serie(Serie):- leInteresa(_, Serie).
 
-temporadas(Serie, Temporada):- episodiosPorTemporada(Serie, _, Temporada).
+temporada(Serie, Temporada):- episodiosPorTemporada(Serie, _, Temporada).
 
 esFuerte(Serie,Temporada):- pasó(Serie, Temporada, _, muerte(_)).
 esFuerte(Serie,Temporada):- pasó(Serie, Temporada, _, relación(parentesco, _, _)).
@@ -116,8 +127,8 @@ esFuerte(Serie,Temporada):- pasó(Serie, Temporada, _, relación(amorosa, _, _))
 vieneZafando(Persona, Serie):-
 	leInteresa(Persona, Serie),
 	not(leSpoileo(_, Persona, Serie)),
-  	temporadas(Serie,Temporada),
-	forall(temporadas(Serie, Temporada), esFuerte(Serie,Temporada)).
+  	temporada(Serie,Temporada),
+	forall(temporada(Serie, Temporada), esFuerte(Serie,Temporada)).
 
 vieneZafando(Persona, Serie):-
 	leInteresa(Persona, Serie),
@@ -128,10 +139,17 @@ vieneZafando(Persona, Serie):-
 
 test(juan_viene_zafando_con_himym_got_y_hoc, set(Series = [himym, got, hoc])):-
 	vieneZafando(juan, Series).
-
+%el_Test_de_Abajo_deberia_Ser_con_not
 test(nico_viene_zafando_con_StarWars, nondet):-
 	vieneZafando(Persona, Serie), Persona == nico, Serie == starWars.
 test(maiu_no_viene_zafando_con_ninguna_serie,fail) :-
-  vieneZafando(Persona,Serie) , Persona == maiu.
+  vieneZafando(Persona,_) , Persona == maiu.
 
 :- end_tests(punto6_vieneZafando).
+% ------------2DAPARTE-------------
+malaGente(Persona) :-
+        serie(Serie),persona(Persona), not(mira(Persona,Serie)),
+        leSpoileo(Persona,_,Serie).
+malaGente(Persona) :-
+    leDijo(Persona,_,_,_),
+   forall(leDijo(Persona,_,_,_), leSpoileo(Persona,_,_)).
