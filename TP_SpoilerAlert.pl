@@ -153,3 +153,12 @@ malaGente(Persona) :-
 malaGente(Persona) :-
     leDijo(Persona,_,Serie,_),
    forall(leDijo(Persona,Alguien,Serie,_), leSpoileo(Persona,Alguien,Serie)).
+
+:- begin_tests(punto1_malaGente).
+   test(gaston_es_mala_gemte,nondet):-
+          malaGente(Persona) , Persona == gastón.
+   test(pedro_no_es_mala_gemte,fail):-
+          malaGente(Persona) , Persona == pedro.
+
+
+:- end_tests(punto1_malaGente).
