@@ -151,5 +151,5 @@ malaGente(Persona) :-
         serie(Serie),persona(Persona), not(mira(Persona,Serie)),
         leSpoileo(Persona,_,Serie).
 malaGente(Persona) :-
-    leDijo(Persona,_,_,_),
-   forall(leDijo(Persona,_,_,_), leSpoileo(Persona,_,_)).
+    leDijo(Persona,_,Serie,_),
+   forall(leDijo(Persona,Alguien,Serie,_), leSpoileo(Persona,Alguien,Serie)).
