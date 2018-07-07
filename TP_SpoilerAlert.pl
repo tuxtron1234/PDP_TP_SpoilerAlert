@@ -25,11 +25,14 @@ episodiosPorTemporada(himym, 23, 1).
 episodiosPorTemporada(drHouse, 16, 8).
 
 /*
-Por principio de Universo Cerrado se considera que todo lo negado o desconocido no se incluye en este caso:
+Por principio de Universo Cerrado se asume que todo lo que no esta en la base de conocimiento se asume falso
+      es decir  no es necesario mencionar que "algo"  no esta incluido ,si fuese Universo abierto podria interactuar
+      con el usuario consultandole si esta o no incluido
+  Ejemplos(no se modelan) :
   _Nadie mira "Mad men".
   _Alf no ve ninguna serie porque el doctorado le consume toda la vida.
   _No recordamos cuántos episodios tiene la segunda temporada de “Mad men”.
-No se modela.
+
 */
 
 % Punto 2
@@ -55,10 +58,13 @@ esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 
 test(la_muerte_del_emperor_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == muerte(emperor).
+test(la_muerte_de_pedro_no_es_spoiler_para_StarWars,fail):-
+  esSpoiler(Serie,Spoiler) ,Serie == starWars ,Spoiler == muerte(pedro).
 
 test(la_relación_de_parentesco_entre_anakin_y_el_rey_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == relación(parentesco, anakin, rey).
-
+test(la_relación_de_parentesco_entre_anakin_y_lavezzi_no_es_spoiler_para_starWars,fail):-
+    esSpoiler(Serie,Spoiler),Serie == starWars ,Spoiler == relación(parentesco,anakin,lavezzi).
 :- end_tests(punto3_EsSpoiler).
 
 % Punto 4
@@ -77,6 +83,8 @@ test(gastón_le_dijo_a_maiu_un_spoiler_de_GOT, nondet):-
 
 test(nico_le_dijo_a_maiu_un_spoiler_de_StarWars, nondet):-
   leSpoileo(PersonaMala, Victima, Serie), PersonaMala == nico, Victima == maiu, Serie == starWars.
+test(nico_no_le_dijo_a_maiu_un_spoiler_de_onePiece,fail) :-
+     leSpoileo(PersonaMala,Victima,Serie),PersonaMala == nico ,Victima == maiu ,Serie == onePiece.
 
 :- end_tests(punto4_LeSpoileo).
 
@@ -91,7 +99,9 @@ televidenteResponsable(Persona):-
 
 test(juan_aye_y_maiu_son_televidentes_responsables, set(Personas == [juan, aye, maiu])):-
   televidenteResponsable(Personas).
-
+%no_reconoce_el_test_de_abajo
+test(nico_y_gaston_no_son_televidentes_responsables, set(Personas == [nico,gaston]),fail):-
+   televidenteResponsable(Personas).
 :- end_tests(punto5_televidenteResponsable).
 
 % Punto 6
@@ -121,5 +131,7 @@ test(juan_viene_zafando_con_himym_got_y_hoc, set(Series = [himym, got, hoc])):-
 
 test(nico_viene_zafando_con_StarWars, nondet):-
 	vieneZafando(Persona, Serie), Persona == nico, Serie == starWars.
+test(maiu_no_viene_zafando_con_ninguna_serie,fail) :-
+  vieneZafando(Persona,Serie) , Persona == maiu.
 
 :- end_tests(punto6_vieneZafando).
