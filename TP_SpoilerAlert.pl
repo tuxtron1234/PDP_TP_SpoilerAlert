@@ -33,7 +33,6 @@ test(nico_mira_got, nondet):-
 
 :- end_tests(base_de_conocimientos).
 
-
 /*
 Por principio de Universo Cerrado se asume que todo lo que no esta en la base de conocimiento se asume falso
 es decir  no es necesario mencionar que "algo"  no esta incluido ,si fuese Universo abierto podria interactuar
@@ -53,10 +52,10 @@ pasó(himym, 1, 1, relación(amorosa, ted, robin)).
 pasó(himym, 4, 3, relación(amorosa, swarley, robin)).
 pasó(got, 4, 5, relación(amistad, tyrion, dragon)).
 
-pasó(got, 3, 2, plotTwist(sueño,sinPiernas)).
-pasó(got, 3, 12, plotTwist(fuego,boda)).
-pasó(superCampeones, 9, 9, plotTwist(sueño,coma,sinPiernas)).
-pasó(drHouse, 8, 7, plotTwist(coma,pastillas)).
+pasó(got, 3, 2, plotTwist(sueño, sinPiernas)).
+pasó(got, 3, 12, plotTwist(fuego, boda)).
+pasó(superCampeones, 9, 9, plotTwist(sueño, coma, sinPiernas)).
+pasó(drHouse, 8, 7, plotTwist(coma, pastillas)).
 
 leDijo(gastón, maiu, got, relación(amistad, tyrion, dragon)).
 leDijo(nico, maiu, starWars, relación(parentesco, vader, luke)).
@@ -171,13 +170,13 @@ test(maiu_no_viene_zafando_con_ninguna_serie, fail) :-
 
 % ------------SEGUNDA PARTE-------------
 
-malaGente(Persona) :-
+malaGente(Persona):-
   serie(Serie), persona(Persona),
   not(mira(Persona, Serie)),
-  leSpoileo(Persona,_,Serie).
+  leSpoileo(Persona, _, Serie).
 
-malaGente(Persona) :-
-  leDijo(Persona,_,Serie,_),
+malaGente(Persona):-
+  leDijo(Persona, _, Serie, _),
   forall(leDijo(Persona, Alguien, Serie,_),
   leSpoileo(Persona, Alguien, Serie)).
 
