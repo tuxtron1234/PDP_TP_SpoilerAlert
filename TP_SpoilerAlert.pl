@@ -24,6 +24,14 @@ episodiosPorTemporada(got, 10, 2).
 episodiosPorTemporada(himym, 23, 1).
 episodiosPorTemporada(drHouse, 16, 8).
 
+:- begin_tests(base_de_conocimientos).
+
+test(nico_mira_got, nondet):-
+  mira(Persona, Serie), Persona = nico, Serie = got.
+
+:- end_tests(base_de_conocimientos).
+
+
 /*
 Por principio de Universo Cerrado se asume que todo lo que no esta en la base de conocimiento se asume falso
 es decir  no es necesario mencionar que "algo"  no esta incluido ,si fuese Universo abierto podria interactuar
@@ -102,10 +110,10 @@ televidenteResponsable(Persona):-
 
 test(juan_aye_y_maiu_son_televidentes_responsables, set(Personas == [juan, aye, maiu])):-
   televidenteResponsable(Personas).
-%no_reconoce_el_test_de_abajo
 
-test(nico_y_gaston_no_son_televidentes_responsables, set(Personas == [nico,gaston]),fail):-
-   televidenteResponsable(Personas).
+test(nico_y_gaston_no_son_televidentes_responsables, nondet):-
+   not(televidenteResponsable(nico)),
+   not(televidenteResponsable(gastón)).
 
 :- end_tests(punto5_televidenteResponsable).
 
@@ -145,8 +153,8 @@ test(juan_viene_zafando_con_himym_got_y_hoc, set(Series = [himym, got, hoc])):-
 test(nico_viene_zafando_con_StarWars, nondet):-
 	vieneZafando(Persona, Serie), Persona == nico, Serie == starWars.
 
-test(maiu_no_viene_zafando_con_ninguna_serie,fail) :-
-  vieneZafando(Persona,_) , Persona == maiu.
+test(maiu_no_viene_zafando_con_ninguna_serie, fail) :-
+  vieneZafando(Persona, _) , Persona == maiu.
 
 :- end_tests(punto6_vieneZafando).
 
