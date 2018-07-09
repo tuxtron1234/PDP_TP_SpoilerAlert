@@ -183,10 +183,10 @@ malaGente(Persona) :-
 
 :- begin_tests(punto1_malaGente).
 
-test(gastón_es_mala_gente, nondet):-
-  malaGente(Persona) , Persona == gastón.
+test(gastón_es_mala_gente, set(Persona = [nico, gastón])):-
+  malaGente(Persona).
 
-test(pedro_no_es_mala_gemte,fail):-
-  malaGente(Persona) , Persona == pedro.
+test(pedro_no_es_mala_gemte, nondet):-
+  not(malaGente(pedro)).
 
 :- end_tests(punto1_malaGente).
