@@ -114,23 +114,24 @@ serie(Serie):- leInteresa(_, Serie).
 
 temporada(Serie, Temporada):- episodiosPorTemporada(Serie, _, Temporada).
 
-esFuerte(Serie,Temporada):- pasó(Serie, Temporada, _, muerte(_)).
-esFuerte(Serie,Temporada):- pasó(Serie, Temporada, _, relación(parentesco, _, _)).
-esFuerte(Serie,Temporada):- pasó(Serie, Temporada, _, relación(amorosa, _, _)).
+sucesoFuerte(Suceso):-
+  suceso(Suceso),
+  esFuerte(Suceso).
+
+suceso(Suceso):- pasó(_, _, _, Suceso).
+
+esFuerte(muerte(_)).
+esFuerte(relación(parentesco, _, _)).
+esFuerte(relación(amorosa, _, _)).
 
 vieneZafando(Persona, Serie):-
 	leInteresa(Persona, Serie),
 	not(leSpoileo(_, Persona, Serie)),
   estáZarpada(Serie).
 
-vieneZafando(Persona, Serie):-
-	leInteresa(Persona, Serie),
-	not(leSpoileo(_, Persona, Serie)),
-	estáZarpada(Serie).
-
 estáZarpada(Serie):-
   temporada(Serie, Temporada),
-  forall(temporada(Serie, Temporada), esFuerte(Serie, Temporada)).
+  forall(temporada(Serie, Temporada), (pasó(Serie, Temporada, _, Suceso), esFuerte(Suceso))).
 
 estáZarpada(Serie):-
   esPopular(Serie).
