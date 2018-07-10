@@ -51,11 +51,10 @@ pasó(himym, 1, 1, relación(amorosa, ted, robin)).
 pasó(himym, 4, 3, relación(amorosa, swarley, robin)).
 pasó(got, 4, 5, relación(amistad, tyrion, dragon)).
 
-% lo pondria por separado
-pasó(got, 3, 2, plotTwist(sueño, sinPiernas)).
-pasó(got, 3, 12, plotTwist(fuego, boda)).
-pasó(superCampeones, 9, 9, plotTwist(sueño, coma, sinPiernas)).
-pasó(drHouse, 8, 7, plotTwist(coma, pastillas)).
+pasó(got, 3, 2, plotTwist([sueño, sinPiernas])).
+pasó(got, 3, 12, plotTwist([fuego, boda])).
+pasó(superCampeones, 9, 9, plotTwist([sueño, coma, sinPiernas])).
+pasó(drHouse, 8, 7, plotTwist([coma, pastillas])).
 
 leDijo(gastón, maiu, got, relación(amistad, tyrion, dragon)).
 leDijo(nico, maiu, starWars, relación(parentesco, vader, luke)).
@@ -191,10 +190,34 @@ test(pedro_no_es_mala_gemte, nondet):-
 :- end_tests(punto1_malaGente).
 
 /*
+
+member(Valor,Lista).
+forall(Antecedente,Consecuente).
+
+esCliche(Serie):- 
+    pasó(Serie,_,_,plotTwist([Palabra|ListaPalabras])),
+
 fuerte(Serie):-
         esFuerte(Serie,_),
         not(esCliche(Serie)).
-	pasoEnUltimaTemporada.
+	pasoEnUltimaTemporada(Serie).
 % en esCliche no sé si hay que hacer que se relacione con la ultima temporada
+
+PUNTO 3
+findall(Formato, Consulta, Lista)  <--- Define una lista a partir de una consulta , podriamos generar una lista de gente mirando y buscar su lenght pero nose bien :S
+
+popular(Serie):-
+
+cantidadMiran*cantidadConversaciones >= cantidadMiranStarW*cantidadConversacionesSW
+
+PUNTO4
+
+amigo(nico, maiu).
+amigo(maiu, gaston).
+amigo(maiu, juan).
+amigo(juan, aye).
+
+fullSpoil(Persona1,Persona2):- <-- persona1 tendria que hacerle spoil a persona2 o sus amigos o los amigos de sus amigos
+
 */
 
