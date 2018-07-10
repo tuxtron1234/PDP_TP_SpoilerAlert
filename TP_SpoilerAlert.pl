@@ -34,10 +34,9 @@ test(nico_mira_got, nondet):-
 :- end_tests(base_de_conocimientos).
 
 /*
-Por principio de Universo Cerrado se asume que todo lo que no esta en la base de conocimiento se asume falso
-es decir  no es necesario mencionar que "algo"  no esta incluido ,si fuese Universo abierto podria interactuar
-con el usuario consultandole si esta o no incluido
-Ejemplos(no se modelan) :
+Por principio de Universo Cerrado se asume que todo lo que no esta en la base de conocimiento es falso.
+Es decir  no es necesario mencionar que "algo"  no esta incluido o un predicado falso.
+Casos(que no se modelan) :
   1. Nadie mira "Mad men".
   2. Alf no ve ninguna serie porque el doctorado le consume toda la vida.
   3. No recordamos cuántos episodios tiene la segunda temporada de “Mad men”.
@@ -52,6 +51,7 @@ pasó(himym, 1, 1, relación(amorosa, ted, robin)).
 pasó(himym, 4, 3, relación(amorosa, swarley, robin)).
 pasó(got, 4, 5, relación(amistad, tyrion, dragon)).
 
+% lo pondria por separado
 pasó(got, 3, 2, plotTwist(sueño, sinPiernas)).
 pasó(got, 3, 12, plotTwist(fuego, boda)).
 pasó(superCampeones, 9, 9, plotTwist(sueño, coma, sinPiernas)).
@@ -189,3 +189,12 @@ test(pedro_no_es_mala_gemte, nondet):-
   not(malaGente(pedro)).
 
 :- end_tests(punto1_malaGente).
+
+/*
+fuerte(Serie):-
+        esFuerte(Serie,_),
+        not(esCliche(Serie)).
+	pasoEnUltimaTemporada.
+% en esCliche no sé si hay que hacer que se relacione con la ultima temporada
+*/
+
