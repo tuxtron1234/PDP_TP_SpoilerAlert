@@ -251,6 +251,15 @@ esPopular(Serie):-
   puntaje(starWars, PuntajeDeStarwars),
   Puntaje >= PuntajeDeStarwars.
 
+:- begin_tests(punto3_esPopular).
+
+test(got_starWars_y_hoc_son_populares, set(Serie == [got, starWars, hoc]), nondet):-
+  esPopular(Serie).
+
+test(onePiece_no_es_popular, fail):-
+  esPopular(onePiece).
+
+:- end_tests(punto3_esPopular).
 
 /*
 
