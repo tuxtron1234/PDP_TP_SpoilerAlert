@@ -196,7 +196,18 @@ test(pedro_no_es_mala_gemte, nondet):-
 
 % Punto 2
 
+ocurrióAlFinal(Serie, Suceso):-
+  pasó(Serie, Temporada, Episodio, Suceso),
+  episodiosPorTemporada(Serie, Episodio, Temporada).
 
+esCliché(plotTwist([ListaPalabras])):-
+  pasó(Serie, _, _, plotTwist([ListaPalabras])),
+  forall(
+  member(Palabra, ListaPalabras),
+  (pasó(OtraSerie, _, _, plotTwist([OtraListaPalabras])),
+  member(Palabra, OtraListaPalabras),
+  Serie \= OtraSerie)
+  ).
 
 /*
 
