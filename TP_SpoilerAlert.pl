@@ -146,9 +146,13 @@ vieneZafando(Persona, Serie):-
 	not(leSpoileo(_, Persona, Serie)),
   estáZarpada(Serie).
 
+temporadaFuerte(Temporada):-
+  pasó(_, Temporada, _, Suceso),
+  esFuerte(Suceso).
+
 estáZarpada(Serie):-
   temporada(Serie, Temporada),
-  forall(temporada(Serie, Temporada), (pasó(Serie, Temporada, _, Suceso), esFuerte(Suceso))).
+  forall(temporada(Serie, Temporada), temporadaFuerte(Temporada)).
 
 estáZarpada(Serie):-
   esPopular(Serie).
@@ -169,6 +173,8 @@ test(maiu_no_viene_zafando_con_ninguna_serie, fail) :-
 
 % ------------SEGUNDA PARTE-------------
 
+% Punto 1
+
 malaGente(PersonaMala):-
   leSpoileo(PersonaMala, _, Serie),
   not(mira(PersonaMala, Serie)).
@@ -188,6 +194,10 @@ test(pedro_no_es_mala_gemte, nondet):-
 
 :- end_tests(punto1_malaGente).
 
+% Punto 2
+
+
+
 /*
 
 member(Valor,Lista).
@@ -203,7 +213,8 @@ fuerte(Serie):-
 % en esCliche no sé si hay que hacer que se relacione con la ultima temporada
 
 PUNTO 3
-findall(Formato, Consulta, Lista)  <--- Define una lista a partir de una consulta , podriamos generar una lista de gente mirando y buscar su lenght pero nose bien :S
+findall(Formato, Consulta, Lista)  <--- Define una lista a partir de una consulta ,
+podriamos generar una lista de gente mirando y buscar su lenght pero nose bien :S
 
 popular(Serie):-
 
