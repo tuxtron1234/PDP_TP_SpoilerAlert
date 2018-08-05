@@ -75,14 +75,14 @@ esSpoiler(Serie, Spoiler):- pasó(Serie, _, _, Spoiler).
 test(la_muerte_del_emperor_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == muerte(emperor).
 
-test(la_muerte_de_pedro_no_es_spoiler_para_StarWars,fail):-
-  esSpoiler(Serie,Spoiler) ,Serie == starWars ,Spoiler == muerte(pedro).
+test(la_muerte_de_pedro_no_es_spoiler_para_StarWars, fail):-
+  esSpoiler(Serie,Spoiler), Serie == starWars, Spoiler == muerte(pedro).
 
 test(la_relación_de_parentesco_entre_anakin_y_el_rey_es_spoiler_para_StarWars, nondet):-
   esSpoiler(Serie, Spoiler), Serie == starWars, Spoiler == relación(parentesco, anakin, rey).
 
 test(la_relación_de_parentesco_entre_anakin_y_lavezzi_no_es_spoiler_para_starWars,fail):-
-    esSpoiler(Serie,Spoiler),Serie == starWars ,Spoiler == relación(parentesco,anakin,lavezzi).
+    esSpoiler(Serie,Spoiler), Serie == starWars, Spoiler == relación(parentesco,anakin,lavezzi).
 
 :- end_tests(punto3_EsSpoiler).
 
@@ -103,8 +103,8 @@ test(gastón_le_dijo_a_maiu_un_spoiler_de_GOT, nondet):-
 test(nico_le_dijo_a_maiu_un_spoiler_de_StarWars, nondet):-
   leSpoileo(PersonaMala, Victima, Serie), PersonaMala == nico, Victima == maiu, Serie == starWars.
 
-test(nico_no_le_dijo_a_maiu_un_spoiler_de_onePiece,fail) :-
-     leSpoileo(PersonaMala,Victima,Serie),PersonaMala == nico ,Victima == maiu ,Serie == onePiece.
+test(nico_no_le_dijo_a_maiu_un_spoiler_de_onePiece, fail) :-
+     leSpoileo(PersonaMala, Victima, Serie), PersonaMala == nico, Victima == maiu ,Serie == onePiece.
 
 :- end_tests(punto4_LeSpoileo).
 
@@ -157,10 +157,10 @@ estáZarpada(Serie):-
 
 test(juan_viene_zafando_con_himym_got_y_hoc, set(Series = [himym, got, hoc])):-
 	vieneZafando(juan, Series).
-%el_Test_de_Abajo_deberia_Ser_con_not
 
 test(nico_viene_zafando_con_StarWars, nondet):-
-	vieneZafando(Persona, Serie), Persona == nico, Serie == starWars.
+	vieneZafando(Persona, starWars),
+  not((vieneZafando(OtraPersona, starWars), Persona \= OtraPersona)).
 
 test(maiu_no_viene_zafando_con_ninguna_serie, fail) :-
   vieneZafando(Persona, _) , Persona == maiu.
@@ -194,7 +194,7 @@ test(pedro_no_es_mala_gemte, nondet):-
 member(Valor,Lista).
 forall(Antecedente,Consecuente).
 
-esCliche(Serie):- 
+esCliche(Serie):-
     pasó(Serie,_,_,plotTwist([Palabra|ListaPalabras])),
 
 fuerte(Serie):-
@@ -220,4 +220,3 @@ amigo(juan, aye).
 fullSpoil(Persona1,Persona2):- <-- persona1 tendria que hacerle spoil a persona2 o sus amigos o los amigos de sus amigos
 
 */
-
