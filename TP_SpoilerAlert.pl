@@ -133,13 +133,9 @@ temporada(Serie, Temporada):- episodiosPorTemporada(Serie, _, Temporada).
 
 sucesoFuerte(Suceso):-
   suceso(Suceso),
-  esFuerte(Suceso).
+  esFuerte(_, Suceso).
 
 suceso(Suceso):- pasó(_, _, _, Suceso).
-
-esFuerte(muerte(_)).
-esFuerte(relación(parentesco, _, _)).
-esFuerte(relación(amorosa, _, _)).
 
 vieneZafando(Persona, Serie):-
 	leInteresa(Persona, Serie),
@@ -148,7 +144,7 @@ vieneZafando(Persona, Serie):-
 
 temporadaFuerte(Temporada):-
   pasó(_, Temporada, _, Suceso),
-  esFuerte(Suceso).
+  esFuerte(_, Suceso).
 
 estáZarpada(Serie):-
   temporada(Serie, Temporada),
@@ -208,6 +204,14 @@ esCliché(plotTwist([ListaPalabras])):-
   member(Palabra, OtraListaPalabras),
   Serie \= OtraSerie)
   ).
+
+esFuerte(Serie, muerte(_)):- pasó(Serie, _, _, muerte(_)).
+
+esFuerte(Serie, relación(parentesco, _, _)):- pasó(Serie, _, _, relación(parentesco, _, _)).
+
+esFuerte(Serie, relación(amorosa, _, _)):- pasó(Serie, _, _, relación(amorosa, _, _)).
+
+esFuerte(Serie, Suceso):- ocurrióAlFinal(Serie, Suceso), not(esCliché(Suceso)).
 
 /*
 
