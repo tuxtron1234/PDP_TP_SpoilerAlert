@@ -200,23 +200,22 @@ esCliché(plotTwist([ListaPalabras])):-
   pasó(Serie, _, _, plotTwist([ListaPalabras])),
   forall(
   member(Palabra, ListaPalabras),
-  (pasó(OtraSerie, _, _, plotTwist([OtraListaPalabras])),
-  member(Palabra, OtraListaPalabras),
+  (pasó(OtraSerie, _, _, plotTwist([OtraListaPalabras])), member(Palabra, OtraListaPalabras),
   Serie \= OtraSerie)
   ).
 
-esFuerte(Serie, muerte(_)):- pasó(Serie, _, _, muerte(_)).
+esFuerte(Serie, muerte(Personaje)):- pasó(Serie, _, _, muerte(Personaje)).
 
-esFuerte(Serie, relación(parentesco, _, _)):- pasó(Serie, _, _, relación(parentesco, _, _)).
+esFuerte(Serie, relación(parentesco, UnPersonaje, OtroPersonaje)):- pasó(Serie, _, _, relación(parentesco, UnPersonaje, OtroPersonaje)).
 
-esFuerte(Serie, relación(amorosa, _, _)):- pasó(Serie, _, _, relación(amorosa, _, _)).
+esFuerte(Serie, relación(amorosa, UnPersonaje, OtroPersonaje)):- pasó(Serie, _, _, relación(amorosa, UnPersonaje, OtroPersonaje)).
 
 esFuerte(Serie, Suceso):- ocurrióAlFinal(Serie, Suceso), not(esCliché(Suceso)).
 
 :- begin_tests(punto2_esFuerte).
 
 test(la_muerte_de_Seymour_Diera_en_Futurama_es_algo_fuerte, nondet):-
-  esFuerte(futurama, muerte(seymourDiera)).
+  esFuerte(Serie, Suceso), Serie = futurama, Suceso = muerte(seymourDiera).
 
 test(la_relación_de_parentesco_de_Anakin_y_el_Rey_en_Star_Wars_es_algo_fuerte, nondet):-
   esFuerte(starWars, relación(parentesco, anakin, rey)).
