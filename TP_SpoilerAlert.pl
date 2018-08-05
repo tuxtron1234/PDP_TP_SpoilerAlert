@@ -231,19 +231,24 @@ test(el_plot_twist_que_contiene_las_palabras_coma_y_pastillas_en_Doctor_House_no
 
 :- end_tests(punto2_esFuerte).
 
+% Punto 3
+
+cantidadDeEspectadores(Serie, Cantidad):-
+
+cantidadDeConversaciones(Serie, Cantidad):-
+
+puntaje(Serie, Puntaje):-
+  cantidadDeEspectadores(Serie, Visualizaciones),
+  cantidadDeConversaciones(Serie, Conversaciones),
+  Puntaje is Visualizaciones * Conversaciones.
+
+esPopular(Serie):-
+  puntaje(Serie, Puntaje),
+  puntaje(starWars, PuntajeDeStarwars),
+  Puntaje >= PuntajeDeStarwars.
+
+
 /*
-
-member(Valor,Lista).
-forall(Antecedente,Consecuente).
-
-esCliche(Serie):-
-    pasó(Serie,_,_,plotTwist([Palabra|ListaPalabras])),
-
-fuerte(Serie):-
-        esFuerte(Serie,_),
-        not(esCliche(Serie)).
-	pasoEnUltimaTemporada(Serie).
-% en esCliche no sé si hay que hacer que se relacione con la ultima temporada
 
 PUNTO 3
 findall(Formato, Consulta, Lista)  <--- Define una lista a partir de una consulta ,
