@@ -163,7 +163,7 @@ test(nico_viene_zafando_con_StarWars, nondet):-
   not((vieneZafando(OtraPersona, starWars), Persona \= OtraPersona)).
 
 test(maiu_no_viene_zafando_con_ninguna_serie, fail) :-
-  vieneZafando(Persona, _) , Persona == maiu.
+  vieneZafando(maiu, _).
 
 :- end_tests(punto6_vieneZafando).
 
