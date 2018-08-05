@@ -213,6 +213,22 @@ esFuerte(Serie, relación(amorosa, _, _)):- pasó(Serie, _, _, relación(amorosa
 
 esFuerte(Serie, Suceso):- ocurrióAlFinal(Serie, Suceso), not(esCliché(Suceso)).
 
+:- begin_tests(punto2_esFuerte).
+
+test(la_muerte_de_Seymour_Diera_en_Futurama_es_algo_fuerte, nondet):-
+  esFuerte(futurama, muerte(seymourDiera)).
+
+test(la_relación_de_parentesco_de_Anakin_y_el_Rey_en_Star_Wars_es_algo_fuerte, nondet):-
+  esFuerte(starWars, relación(parentesco, anakin, rey)).
+
+test(la_relación_amorosa_de_Ted_y_Robin_en_How_I_met_your_mother_es_algo_fuerte, nondet):-
+  esFuerte(himym, relación(amorosa, ted, robin)).
+
+test(el_plot_twist_que_contiene_las_palabras_fuego_y_boda_en_Game_of_Thrones_es_algo_fuerte, nondet):-
+  esFuerte(got, plotTwist([fuego, boda])).
+
+:- end_tests(punto2_esFuerte).
+
 /*
 
 member(Valor,Lista).
