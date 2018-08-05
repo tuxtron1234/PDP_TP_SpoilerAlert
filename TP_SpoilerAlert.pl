@@ -176,7 +176,7 @@ malaGente(PersonaMala):-
   forall(leDijo(PersonaMala, Victima, _, _),
   leSpoileo(PersonaMala, Victima, _)).
 
-:- begin_tests(punto1_malaGente).
+:- begin_tests(punto1_B_malaGente).
 
 test(gastón_es_mala_gente, set(Persona = [nico, gastón])):-
   malaGente(Persona).
@@ -184,7 +184,7 @@ test(gastón_es_mala_gente, set(Persona = [nico, gastón])):-
 test(pedro_no_es_mala_gemte, nondet):-
   not(malaGente(pedro)).
 
-:- end_tests(punto1_malaGente).
+:- end_tests(punto1_B_malaGente).
 
 % Punto 2
 
@@ -208,7 +208,7 @@ esFuerte(Serie, relación(amorosa, UnPersonaje, OtroPersonaje)):- pasó(Serie, _
 
 esFuerte(Serie, Suceso):- ocurrióAlFinal(Serie, Suceso), not(esCliché(Suceso)).
 
-:- begin_tests(punto2_esFuerte).
+:- begin_tests(punto2_B_esFuerte).
 
 test(la_muerte_de_Seymour_Diera_en_Futurama_es_algo_fuerte, nondet):-
   esFuerte(Serie, Suceso), Serie = futurama, Suceso = muerte(seymourDiera).
@@ -225,7 +225,7 @@ test(el_plot_twist_que_contiene_las_palabras_fuego_y_boda_en_Game_of_Thrones_es_
 test(el_plot_twist_que_contiene_las_palabras_coma_y_pastillas_en_Doctor_House_no_es_fuerte, fail):-
   esFuerte(drHouse, plotTwist([coma, pastillas])).
 
-:- end_tests(punto2_esFuerte).
+:- end_tests(punto2_B_esFuerte).
 
 % Punto 3
 
@@ -251,7 +251,7 @@ esPopular(Serie):-
   puntaje(starWars, PuntajeDeStarwars),
   Puntaje >= PuntajeDeStarwars.
 
-:- begin_tests(punto3_esPopular).
+:- begin_tests(punto3_B_esPopular).
 
 test(got_starWars_y_hoc_son_populares, set(Serie == [got, starWars, hoc]), nondet):-
   esPopular(Serie).
@@ -259,25 +259,18 @@ test(got_starWars_y_hoc_son_populares, set(Serie == [got, starWars, hoc]), nonde
 test(onePiece_no_es_popular, fail):-
   esPopular(onePiece).
 
-:- end_tests(punto3_esPopular).
+:- end_tests(punto3_B_esPopular).
 
-/*
-
-PUNTO 3
-findall(Formato, Consulta, Lista)  <--- Define una lista a partir de una consulta ,
-podriamos generar una lista de gente mirando y buscar su lenght pero nose bien :S
-
-popular(Serie):-
-
-cantidadMiran*cantidadConversaciones >= cantidadMiranStarW*cantidadConversacionesSW
-
-PUNTO4
+% Punto 4
 
 amigo(nico, maiu).
-amigo(maiu, gaston).
+amigo(maiu, gastón).
 amigo(maiu, juan).
 amigo(juan, aye).
 
-fullSpoil(Persona1,Persona2):- <-- persona1 tendria que hacerle spoil a persona2 o sus amigos o los amigos de sus amigos
 
+/*
+PUNTO4
+
+fullSpoil(Persona1,Persona2):- <-- persona1 tendria que hacerle spoil a persona2 o sus amigos o los amigos de sus amigos
 */
