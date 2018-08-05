@@ -13,10 +13,6 @@ mira(gastón, hoc).
 
 mira(pedro,got).
 
-esPopular(got).
-esPopular(hoc).
-esPopular(starWars).
-
 quiereVer(juan, hoc).
 quiereVer(aye, got).
 quiereVer(gastón, himym).
@@ -234,13 +230,21 @@ test(el_plot_twist_que_contiene_las_palabras_coma_y_pastillas_en_Doctor_House_no
 % Punto 3
 
 cantidadDeEspectadores(Serie, Cantidad):-
+  serie(Serie),
+  findall(Persona, mira(Persona, Serie), Personas),
+  length(Personas, Cantidad).
 
 cantidadDeConversaciones(Serie, Cantidad):-
+  serie(Serie),
+  findall(Persona, leDijo(Persona, _, Serie, _), Personas),
+  length(Personas, Cantidad).
 
 puntaje(Serie, Puntaje):-
   cantidadDeEspectadores(Serie, Visualizaciones),
   cantidadDeConversaciones(Serie, Conversaciones),
   Puntaje is Visualizaciones * Conversaciones.
+
+esPopular(hoc).
 
 esPopular(Serie):-
   puntaje(Serie, Puntaje),
