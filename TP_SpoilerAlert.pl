@@ -169,15 +169,14 @@ test(maiu_no_viene_zafando_con_ninguna_serie, fail) :-
 
 % ------------SEGUNDA PARTE-------------
 
-malaGente(Persona):-
-  serie(Serie), persona(Persona),
-  not(mira(Persona, Serie)),
-  leSpoileo(Persona, _, Serie).
+malaGente(PersonaMala):-
+  leSpoileo(PersonaMala, _, Serie),
+  not(mira(PersonaMala, Serie)).
 
-malaGente(Persona):-
-  leDijo(Persona, _, Serie, _),
-  forall(leDijo(Persona, Alguien, Serie,_),
-  leSpoileo(Persona, Alguien, Serie)).
+malaGente(PersonaMala):-
+  leDijo(PersonaMala, _, _, _),
+  forall(leDijo(PersonaMala, Victima, _, _),
+  leSpoileo(PersonaMala, Victima, _)).
 
 :- begin_tests(punto1_malaGente).
 
