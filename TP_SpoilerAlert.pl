@@ -227,6 +227,9 @@ test(la_relación_amorosa_de_Ted_y_Robin_en_How_I_met_your_mother_es_algo_fuerte
 test(el_plot_twist_que_contiene_las_palabras_fuego_y_boda_en_Game_of_Thrones_es_algo_fuerte, nondet):-
   esFuerte(got, plotTwist([fuego, boda])).
 
+test(el_plot_twist_que_contiene_las_palabras_coma_y_pastillas_en_Doctor_House_no_es_fuerte, fail):-
+  esFuerte(drHouse, plotTwist([coma, pastillas])).
+
 :- end_tests(punto2_esFuerte).
 
 /*
