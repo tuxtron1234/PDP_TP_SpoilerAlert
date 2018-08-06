@@ -247,9 +247,9 @@ puntaje(Serie, Puntaje):-
 esPopular(hoc).
 
 esPopular(Serie):-
-  puntaje(Serie, Puntaje),
+  puntaje(Serie, PuntajeSerie),
   puntaje(starWars, PuntajeDeStarwars),
-  Puntaje >= PuntajeDeStarwars.
+  PuntajeSerie >= PuntajeDeStarwars.
 
 :- begin_tests(punto3_B_esPopular).
 
@@ -267,6 +267,8 @@ amigo(nico, maiu).
 amigo(maiu, gastón).
 amigo(maiu, juan).
 amigo(juan, aye).
+
+fullSpoil(UnaPersona, OtraPersona):- leSpoileo(UnaPersona, OtraPersona, _).
 
 
 /*
