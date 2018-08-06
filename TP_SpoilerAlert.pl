@@ -278,7 +278,8 @@ fullSpoil(UnaPersona, OtraPersona):- leSpoileo(UnaPersona, OtraPersona, _).
 fullSpoil(UnaPersona, OtraPersona):-
   amigo(UnAmigo, OtraPersona),
   fullSpoil(UnaPersona, UnAmigo),
-  UnaPersona \= UnAmigo.
+  UnaPersona \= UnAmigo,
+  UnaPersona \= OtraPersona.
 
 :- begin_tests(punto4_B_fullSpoil).
 
@@ -297,6 +298,5 @@ test(maiu_no_hizo_full_spoil_a_nadie, fail):-
 
 /*
 PUNTO4
-
 fullSpoil(Persona1,Persona2):- <-- persona1 tendria que hacerle spoil a persona2 o sus amigos o los amigos de sus amigos
 */
