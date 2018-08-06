@@ -199,13 +199,18 @@ esCliché(plotTwist([ListaPalabras])):-
     (pasó(OtraSerie, _, _, plotTwist([OtraListaPalabras])), member(Palabra, OtraListaPalabras), Serie \= OtraSerie)
   ).
 
-esFuerte(Serie, muerte(Personaje)):- pasó(Serie, _, _, muerte(Personaje)).
+esFuerte(Serie, muerte(Personaje)):-
+  pasó(Serie, _, _, muerte(Personaje)).
 
-esFuerte(Serie, relación(parentesco, UnPersonaje, OtroPersonaje)):- pasó(Serie, _, _, relación(parentesco, UnPersonaje, OtroPersonaje)).
+esFuerte(Serie, relación(parentesco, UnPersonaje, OtroPersonaje)):-
+  pasó(Serie, _, _, relación(parentesco, UnPersonaje, OtroPersonaje)).
 
-esFuerte(Serie, relación(amorosa, UnPersonaje, OtroPersonaje)):- pasó(Serie, _, _, relación(amorosa, UnPersonaje, OtroPersonaje)).
+esFuerte(Serie, relación(amorosa, UnPersonaje, OtroPersonaje)):-
+  pasó(Serie, _, _, relación(amorosa, UnPersonaje, OtroPersonaje)).
 
-esFuerte(Serie, Suceso):- ocurrióAlFinal(Serie, Suceso), not(esCliché(Suceso)).
+esFuerte(Serie, Suceso):-
+  ocurrióAlFinal(Serie, Suceso),
+  not(esCliché(Suceso)).
 
 :- begin_tests(punto2_B_esFuerte).
 
@@ -252,7 +257,7 @@ esPopular(Serie):-
 
 :- begin_tests(punto3_B_esPopular).
 
-test(got_starWars_y_hoc_son_populares, set(Serie == [got, starWars, hoc]), nondet):-
+test(got_starWars_y_hoc_son_populares, set(Serie = [got, starWars, hoc])):-
   esPopular(Serie).
 
 test(onePiece_no_es_popular, fail):-
@@ -263,7 +268,6 @@ test(onePiece_no_es_popular, fail):-
 % Punto 4
 
 % El primero es amigo del Segundo!.
-
 amigo(nico, maiu).
 amigo(maiu, gastón).
 amigo(maiu, juan).
@@ -275,6 +279,21 @@ fullSpoil(UnaPersona, OtraPersona):-
   amigo(UnAmigo, OtraPersona),
   fullSpoil(UnaPersona, UnAmigo),
   UnaPersona \= UnAmigo.
+
+:- begin_tests(punto4_B_fullSpoil).
+
+test(nico_hizo_full_spoil_a_aye_juan_maiu_y_gastón, set(Victimas = [aye, juan, maiu, gastón])):-
+  fullSpoil(nico, Victimas).
+
+test(gatón_hizo_full_spoil_a_maiu_juan_y_aye, set(Victimas = [maiu, juan, aye])):-
+  fullSpoil(gastón, Victimas).
+% Este test da mal.
+
+test(maiu_no_hizo_full_spoil_a_nadie, fail):-
+  fullSpoil(maiu, Victimas).
+
+:- end_tests(punto4_B_fullSpoil).
+
 
 /*
 PUNTO4
