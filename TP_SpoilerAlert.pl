@@ -195,9 +195,8 @@ ocurrióAlFinal(Serie, Suceso):-
 esCliché(plotTwist([ListaPalabras])):-
   pasó(Serie, _, _, plotTwist([ListaPalabras])),
   forall(
-  member(Palabra, ListaPalabras),
-  (pasó(OtraSerie, _, _, plotTwist([OtraListaPalabras])), member(Palabra, OtraListaPalabras),
-  Serie \= OtraSerie)
+    member(Palabra, ListaPalabras),
+    (pasó(OtraSerie, _, _, plotTwist([OtraListaPalabras])), member(Palabra, OtraListaPalabras), Serie \= OtraSerie)
   ).
 
 esFuerte(Serie, muerte(Personaje)):- pasó(Serie, _, _, muerte(Personaje)).
@@ -263,6 +262,8 @@ test(onePiece_no_es_popular, fail):-
 
 % Punto 4
 
+% El primero es amigo del Segundo!.
+
 amigo(nico, maiu).
 amigo(maiu, gastón).
 amigo(maiu, juan).
@@ -270,6 +271,10 @@ amigo(juan, aye).
 
 fullSpoil(UnaPersona, OtraPersona):- leSpoileo(UnaPersona, OtraPersona, _).
 
+fullSpoil(UnaPersona, OtraPersona):-
+  amigo(UnAmigo, OtraPersona),
+  fullSpoil(UnaPersona, UnAmigo),
+  UnaPersona \= UnAmigo.
 
 /*
 PUNTO4
